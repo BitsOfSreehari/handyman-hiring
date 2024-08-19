@@ -30,12 +30,39 @@ input, button, textarea, select {
     font: inherit;
 }
 
-button {
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn {
     border: 2px solid;
     border-left: 5px solid;
     border-bottom: 15px solid;
+    width: fit-content;
+    padding-inline: 5px;
     font-size: 1.5rem;
+    cursor: pointer;
 }
+
+.btn:hover {
+    color: #646664;
+}
+
+.btn:focus {
+    color: #454545;
+    outline: 0;
+}
+
+.btn:active {
+    border-left: 2px solid;
+    border-right: 5px solid;
+    border-top: 5px solid;
+    border-bottom: 12px solid;
+}
+
+
+
 
 /* HEADER */
 .logo {
@@ -184,10 +211,6 @@ button {
     gap: 32px;
 }
 
-.account-interact button {
-    width: fit-content;
-}
-
 .join-handyman {
     padding-left: 50px;
 }
@@ -197,7 +220,7 @@ button {
     font-size: 1.25rem;
 }
 
-.join-handyman button {
+.join-handyman .btn {
     display: block;
     margin-left: auto;
     margin-top: 20px;
