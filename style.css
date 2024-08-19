@@ -1,0 +1,213 @@
+:root {
+    --color-pen: #1E201E;
+    --color-bg: #EEEEEE;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    max-width: 1065px;
+    margin-inline: auto;
+    font-family: "Patrick Hand SC", cursive;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.3;
+    color: var(--color-pen);
+    background-color: var(--color-bg);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+button {
+    border: 2px solid;
+    border-left: 5px solid;
+    border-bottom: 15px solid;
+    font-size: 1.5rem;
+}
+
+/* HEADER */
+.logo {
+    text-align: center;
+}
+
+.logo span {
+    font-size: 4rem;
+}
+
+.logo span small {
+    font-size: 1rem;
+}
+
+/* CATEGORIES */
+.category-section {
+    margin-top: 25px;
+    position: relative !important;
+}
+
+.category-section span {
+    font-size: 1.25rem;
+}
+
+.category-container {
+    border: 3px solid;
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+
+.category-container ul {
+    font-size: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 60px;
+    padding: 0 10px;
+    justify-items: center;
+    list-style: none;
+}
+
+.category-container ul li {
+    padding: 0 5px;
+}
+
+.category-container .selected {
+    border: 2px solid var(--color-pen);
+}
+
+.search {
+    background-color: var(--color-bg);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 75%;
+    text-wrap: nowrap;
+}
+
+.search label {
+    font-size: 2rem;
+    margin-left: 5px;
+}
+
+.search input {
+    border: 0;
+    background-color: var(--color-bg);
+    width: 90px;
+    font-size: 2rem;
+}
+
+.search input::placeholder {
+    opacity: 50%;
+}
+
+.search input:focus {
+    outline: 0;
+    border-bottom: 1px solid var(--color-pen);
+}
+
+/* PROFILES */
+.profile-section {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    row-gap: 50px;
+}
+
+.profile {
+    border: 2px solid var(--color-pen);
+    width: 255px;
+    position: relative;
+    padding: 0 50px;
+}
+
+.profile .name {
+    background-color: var(--color-bg);
+    padding: 0 5px;
+    font-size: 2rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-wrap: nowrap;
+}
+
+.profile img {
+    margin-top: 30px;
+    width: 150px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: luminosity;
+}
+
+.profile-headsup {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 1.25rem;
+    list-style: none;
+}
+
+.rating {
+    background-color: var(--color-bg);
+    padding: 0 5px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-wrap: nowrap;
+}
+
+/* NAV SECTION */
+.nav-section {
+    margin-top: 100px;
+    border-top: 3px solid var(--color-pen);
+    border-bottom: 3px solid var(--color-pen);
+    font-size: 1.25rem;
+    padding: 16px 25px;
+    display: flex;
+    align-items: center;
+}
+
+.account-interact {
+    width: 500px;
+    border-right: 2px solid;
+    padding: 40px 0;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.account-interact button {
+    width: fit-content;
+}
+
+.join-handyman {
+    padding-left: 50px;
+}
+
+.join-handyman p {
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.join-handyman button {
+    display: block;
+    margin-left: auto;
+    margin-top: 20px;
+}
+
+/* FOOTER */
+footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
