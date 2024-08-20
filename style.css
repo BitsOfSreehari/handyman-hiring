@@ -107,8 +107,9 @@ a {
     padding: 0 5px;
 }
 
-.category-container .selected {
+li.selected {
     border: 2px solid var(--color-pen);
+    height: fit-content;
 }
 
 .search {
