@@ -276,6 +276,10 @@ li.selected {
     font-size: 1.5rem;
 }
 
+.form-container input[type="text"]:focus {
+    outline: none;
+}
+
 .form-group {
     margin-bottom: 30px;
 }
