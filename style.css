@@ -63,12 +63,23 @@ a {
 }
 
 
-
-
 /* HEADER */
 .logo {
     text-align: center;
 }
+
+/* FOOTER */
+footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+=========INDEX========
+*/
 
 .logo span {
     font-size: 4rem;
@@ -89,7 +100,7 @@ a {
 }
 
 .category-container {
-    border: 3px solid;
+    border: 3px solid var(--color-pen);
     padding-top: 25px;
     padding-bottom: 50px;
 }
@@ -230,11 +241,69 @@ li.selected {
     margin-top: 20px;
 }
 
-/* FOOTER */
-footer {
-    padding: 20px 0;
-    text-align: center;
-    font-size: 1.25rem;
+/*
+=========END OF INDEX========
+*/
+
+/*
+===========SIGNUP============
+*/
+
+.form-section {
+    margin: 5% 23%;
+}
+
+.form-title {
+    font-size: 2.25rem;
+}
+
+.form-container {
+    /* width: 580px; */
+    /* height: fit-content; */
+    border: 3px solid var(--color-pen);
+    padding: 40px 85px;
+}
+
+.form-container form label {
+    font-size: 1.5rem;
+}
+
+.form-container input[type="text"] {
+    border: 0;
+    border-bottom: 2px dashed var(--color-pen);
+    background-color: var(--color-bg);
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+/* form control */
+
+.form-control {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
 }
+
+.signup-btn {
+    font-size: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.form-container form span {
+    padding-top: 25px;
+    font-size: 1.25rem;
+}
+
+.form-container form span a {
+    text-decoration: underline;
+}
+
+/*
+=========END OF SIGNUP========
+*/
