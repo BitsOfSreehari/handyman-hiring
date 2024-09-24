@@ -246,7 +246,7 @@ li.selected {
 */
 
 /*
-===========SIGNUP============
+===========FORM-STYLE============
 */
 
 .form-section {
@@ -293,7 +293,7 @@ li.selected {
     padding-top: 10px;
 }
 
-.signup-btn {
+.form-btn {
     font-size: 2rem;
     width: 100%;
     text-align: center;
@@ -309,5 +309,5 @@ li.selected {
 }
 
 /*
-=========END OF SIGNUP========
+=========END OF FORM-STYLE========
 */
