@@ -36,6 +36,11 @@ a {
     cursor: pointer;
 }
 
+ul{
+    list-style: none;
+    padding: 0;
+}
+
 .btn {
     border: 2px solid;
     border-left: 5px solid;
@@ -115,13 +120,10 @@ footer {
     list-style: none;
 }
 
-.category-container ul li {
-    padding: 0 5px;
-}
-
 li.selected {
     border: 2px solid var(--color-pen);
     height: fit-content;
+    padding: 0 5px;
 }
 
 .search {
@@ -250,7 +252,7 @@ li.selected {
 */
 
 .form-section {
-    margin: 5% 23%;
+    margin: 2% 23%;
 }
 
 .form-title {
@@ -264,11 +266,11 @@ li.selected {
     padding: 40px 85px;
 }
 
-.form-container form label {
+.form-group label {
     font-size: 1.5rem;
 }
 
-.form-container input[type="text"] {
+.form-group input[type="text"],[type="password"] {
     border: 0;
     border-bottom: 2px dashed var(--color-pen);
     background-color: var(--color-bg);
@@ -276,7 +278,7 @@ li.selected {
     font-size: 1.5rem;
 }
 
-.form-container input[type="text"]:focus {
+.form-group input[type="text"],[type="password"]:focus {
     outline: none;
 }
 
@@ -299,15 +301,63 @@ li.selected {
     text-align: center;
 }
 
-.form-container form span {
+.form-control span {
     padding-top: 25px;
     font-size: 1.25rem;
 }
 
-.form-container form span a {
+.form-control span a {
     text-decoration: underline;
 }
 
 /*
 =========END OF FORM-STYLE========
 */
+
+
+
+
+.dashboard_container {
+    margin: 5rem 0;
+    height: 60vh;
+    border: 2px solid var(--color-pen);
+    display: grid;
+    grid-template-columns: .3fr 1fr;
+}
+
+.dash_left {
+    border-right: 2px solid var(--color-pen);
+}
+
+.dash_left ul{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+}
+
+.dash_right {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+}
+
+.dash_right img {
+    height: 120px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: luminosity;
+}
+
+.user-details label{
+    font-size: 1.25rem;
+}
+
+.user-details button {
+    float: right;
+}
