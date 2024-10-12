@@ -1,6 +1,8 @@
 :root {
     --color-pen: #1E201E;
     --color-bg: #EEEEEE;
+    --color-focus: grey;
+    --color-danger: #e00000;
 }
 
 *, *::before, *::after {
@@ -30,6 +32,10 @@ input, button, textarea, select {
     font: inherit;
 }
 
+h1, h2, h3, h4, h5, h6, th {
+    font-weight: normal;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -49,15 +55,19 @@ ul{
     padding-inline: 5px;
     font-size: 1.5rem;
     cursor: pointer;
+    outline: 0;
+}
+
+.btn.danger {
+    color: var(--color-danger);
 }
 
 .btn:hover {
-    color: #646664;
+    color: var(--color-focus);
 }
 
 .btn:focus {
-    color: #454545;
-    outline: 0;
+    color: var(--color-focus);
 }
 
 .btn:active {
@@ -251,8 +261,17 @@ li.selected {
 ===========FORM-STYLE============
 */
 
+.form-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin: 5rem 0; */
+}
+
 .form-section {
-    margin: 2% 23%;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .form-title {
@@ -260,10 +279,12 @@ li.selected {
 }
 
 .form-container {
-    /* width: 580px; */
-    /* height: fit-content; */
     border: 3px solid var(--color-pen);
-    padding: 40px 85px;
+    padding: 0 85px;
+    padding-top: 40px;
+    padding-bottom: 100px;
+    height: 80vh;
+    overflow-y: scroll;
 }
 
 .form-group label {
@@ -282,7 +303,7 @@ li.selected {
     outline: none;
 }
 
-.form-group {
+.form-section .form-group {
     margin-bottom: 30px;
 }
 
@@ -313,37 +334,50 @@ li.selected {
 /*
 =========END OF FORM-STYLE========
 */
+.sign-form-container {
+    height: fit-content;
+}
 
 
 
 
 .dashboard_container {
     margin: 5rem 0;
-    height: 60vh;
-    border: 2px solid var(--color-pen);
+    height: fit-content;
+    border: 3px solid var(--color-pen);
     display: grid;
     grid-template-columns: .3fr 1fr;
 }
 
 .dash_left {
-    border-right: 2px solid var(--color-pen);
+    border-right: 3px solid var(--color-pen);
 }
 
 .dash_left ul{
-    height: 100%;
+    margin: 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    gap: 40px;
     font-size: 1.5rem;
 }
 
+.dash_left ul li {
+    border: 2px solid transparent;
+}
+
+.dash_left ul li a{
+    outline: none;
+}
+
+.dash_left ul li.selected{
+    border: 2px solid var(--color-pen);
+}
+
 .dash_right {
+    height: 70vh;
     padding: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .dash_right img {
@@ -354,10 +388,240 @@ li.selected {
     mix-blend-mode: luminosity;
 }
 
-.user-details label{
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personal-info .form-group {
+    margin-bottom: 30px;
+}
+
+.personal-info label{
     font-size: 1.25rem;
 }
 
-.user-details button {
+.personal-info button {
     float: right;
+}
+
+.account-delete button{
+    font-size: 1.25rem;
+    border: 0;
+    outline: 0;
+    text-decoration: underline;
+    text-align: left;
+    color: var(--color-danger);
+    width: 100%;
+}
+
+
+
+
+
+
+.select-category {
+    user-select: none; /* For most browsers */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer/Edge */
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.select-category .form-group {
+    margin-top: 10px;
+}
+
+.select-category input[type="checkbox"] {
+    display: none;
+}
+
+.select-category label {
+    border: 2px solid var(--color-pen);
+    margin: 5px 5px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.select-category input[type="checkbox"]:not(:checked) + label::before {
+    content: "+ ";
+}
+
+.select-category input[type="checkbox"]:checked + label::before {
+    content: "− ";
+}
+
+.select-category input[type="checkbox"]:checked + label {
+    background-color: var(--color-pen);
+    color: var(--color-bg);
+}
+
+
+
+.select-work-schedule {
+    user-select: none; /* For most browsers */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer/Edge */
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.select-work-schedule input[type="checkbox"] {
+    appearance: none;
+    outline: none;
+}
+
+.select-work-schedule input[type="checkbox"]:checked::before {
+    content: "☑";
+}
+
+.select-work-schedule input[type="checkbox"]:not(checked)::before {
+    content: "☐";
+}
+
+.select-work-schedule label {
+    margin: 10px 0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.select-work-schedule input[type="checkbox"]:checked + label {
+    text-decoration: none;
+}
+
+.select-work-schedule input[type="checkbox"]:not(checked) + label {
+    text-decoration: none;
+    text-decoration: line-through;
+}
+
+.select-work-schedule input[type="time"] {
+    border: none;
+    border-bottom: 2px dashed var(--color-pen);
+    background-color: var(--color-bg);
+    outline: none;
+}
+
+
+.select-location {
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.professional-info button {
+    float: right;
+}
+
+
+
+.join-handyman-form-container .select-work-schedule {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.select-work-schedule-day {
+    white-space: nowrap;
+    flex: 1;
+}
+
+
+
+
+
+
+
+.dash_right table {
+    width: 100%;
+    font-size: 1.5rem;
+    border: 2px solid var(--color-pen);
+    border-collapse: collapse;
+}
+
+.dash_right table th {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--color-pen);
+}
+
+.dash_right table th:not(:last-child) {
+    border-right: 1px solid var(--color-pen);
+}
+
+.dash_right table td {
+    text-align: center;
+    border-bottom: 1px solid var(--color-pen);
+    padding: 20px 10px;
+}
+
+.dash_right table td:not(:last-child) {
+    border-right: 1px solid var(--color-pen);
+}
+
+
+
+
+.manage-category form .btn {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+
+.user-role input[type="checkbox"] {
+    appearance: none;
+    outline: none;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.user-role label {
+    font-size: 1.5rem;
+}
+
+.user-role input[type="checkbox"]:checked::before {
+    content: "☑";
+}
+
+.user-role input[type="checkbox"]:not(checked)::before {
+    content: "☐";
+}
+
+
+
+
+
+
+
+
+
+
+
+.handyman-list {
+    margin-top: 50px;
+}
+
+.handyman-list ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 40px;
+    font-size: 1.5rem;
+    list-style: square;
+}
+
+.handyman-list ul li {
+    margin: 5px;
 }
