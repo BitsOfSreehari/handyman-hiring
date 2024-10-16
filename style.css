@@ -19,6 +19,7 @@ body {
     font-family: "Patrick Hand SC", cursive;
     -webkit-font-smoothing: antialiased;
     line-height: 1.3;
+    letter-spacing: 0.1px;
     color: var(--color-pen);
     background-color: var(--color-bg);
     display: flex;
@@ -135,6 +136,7 @@ footer {
     padding: 0 10px;
     justify-items: center;
     list-style: none;
+    text-align: center;
 }
 
 li.selected {
@@ -294,7 +296,7 @@ li.selected {
     font-size: 1.5rem;
 }
 
-.form-group input[type="text"],[type="password"] {
+.form-group input[type="text"],[type="password"], textarea {
     border: 0;
     border-bottom: 2px dashed var(--color-pen);
     background-color: var(--color-bg);
@@ -302,7 +304,12 @@ li.selected {
     font-size: 1.5rem;
 }
 
-.form-group input[type="text"],[type="password"]:focus {
+.form-group textarea {
+    resize: none;
+    white-space: pre-line;
+}
+
+.form-group input[type="text"],[type="password"], textarea:focus {
     outline: none;
 }
 
@@ -512,13 +519,6 @@ li.selected {
     outline: none;
 }
 
-
-.select-location {
-    font-size: 1.5rem;
-    margin-left: 20px;
-    margin-bottom: 30px;
-}
-
 .professional-info button {
     float: right;
 }
@@ -533,6 +533,12 @@ li.selected {
 .select-work-schedule-day {
     white-space: nowrap;
     flex: 1;
+}
+
+.select-location, .about-me {
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-bottom: 30px;
 }
 
 
@@ -582,7 +588,16 @@ li.selected {
 
 
 
+.user-role {
+    user-select: none; /* For most browsers */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer/Edge */
+}
 
+#is_admin {
+    margin-left: 40px;
+}
 
 .user-role input[type="checkbox"] {
     appearance: none;
@@ -639,7 +654,7 @@ li.selected {
     border: 3px solid var(--color-pen);
     height: 600px;
     padding: 40px 70px;
-    margin-top: 5rem;
+    margin: 3rem 0;
     display: grid;
     grid-template-columns: 0.5fr 1fr;
 }
@@ -662,7 +677,9 @@ li.selected {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    text-align: center;
     border: 2px solid var(--color-pen);
+    padding: 5px;
 }
 
 .profile-right {
