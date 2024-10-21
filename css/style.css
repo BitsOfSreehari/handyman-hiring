@@ -91,6 +91,14 @@ ul{
     text-align: center;
 }
 
+.logo span {
+    font-size: 4rem;
+}
+
+.logo span small {
+    font-size: 2rem;
+}
+
 /* FOOTER */
 footer {
     padding: 20px 0;
@@ -103,14 +111,6 @@ footer {
 /*
 =========INDEX========
 */
-
-.logo span {
-    font-size: 4rem;
-}
-
-.logo span small {
-    font-size: 1rem;
-}
 
 /* CATEGORIES */
 .category-section {
@@ -292,6 +292,11 @@ li.selected {
     overflow-y: scroll;
 }
 
+.sign-form-container {
+    height: fit-content;
+}
+
+/* FORM GROUP */
 .form-group label {
     font-size: 1.5rem;
 }
@@ -317,8 +322,7 @@ li.selected {
     margin-bottom: 30px;
 }
 
-/* form control */
-
+/* FORM CONTROL */
 .form-control {
     display: flex;
     flex-direction: column;
@@ -344,12 +348,10 @@ li.selected {
 /*
 =========END OF FORM-STYLE========
 */
-.sign-form-container {
-    height: fit-content;
-}
 
-
-
+/*
+===========DASHBOARD============
+*/
 
 .dashboard_container {
     margin: 5rem 0;
@@ -390,7 +392,8 @@ li.selected {
     overflow-y: scroll;
 }
 
-.dash_right img {
+/* PERSONAL INFO */
+.personal-info img {
     height: 120px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
@@ -426,11 +429,7 @@ li.selected {
     width: 100%;
 }
 
-
-
-
-
-
+/* PROFESSIONAL INFO */
 .select-category {
     user-select: none; /* For most browsers */
     -webkit-user-select: none; /* For Safari */
@@ -470,8 +469,6 @@ li.selected {
     background-color: var(--color-pen);
     color: var(--color-bg);
 }
-
-
 
 .select-work-schedule {
     user-select: none; /* For most browsers */
@@ -519,34 +516,17 @@ li.selected {
     outline: none;
 }
 
-.professional-info button {
-    float: right;
-}
-
-
-
-.join-handyman-form-container .select-work-schedule {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.select-work-schedule-day {
-    white-space: nowrap;
-    flex: 1;
-}
-
 .select-location, .about-me {
     font-size: 1.5rem;
     margin-left: 20px;
     margin-bottom: 30px;
 }
 
+.professional-info button {
+    float: right;
+}
 
-
-
-
-
-
+/* DASHBOARD TABLE */
 .dash_right table {
     width: 100%;
     font-size: 1.5rem;
@@ -573,20 +553,20 @@ li.selected {
     border-right: 1px solid var(--color-pen);
 }
 
-
-
-
+/* MANAGE CATEGORY */
 .manage-category form .btn {
     float: right;
     margin-top: 10px;
     margin-bottom: 30px;
 }
 
+/*
+===========END OF DASHBOARD============
+*/
 
-
-
-
-
+/*
+===========EDIT-USER============
+*/
 
 .user-role {
     user-select: none; /* For most browsers */
@@ -618,16 +598,13 @@ li.selected {
     content: "☐";
 }
 
+/*
+===========END OF EDIT-USER============
+*/
 
-
-
-
-
-
-
-
-
-
+/*
+===========EDIT-CATEGORY============
+*/
 .handyman-list {
     margin-top: 50px;
 }
@@ -644,11 +621,31 @@ li.selected {
     margin: 5px;
 }
 
+/*
+===========END OF EDIT-CATEGORY============
+*/
 
+/*
+===========JOIN-AS-HANDYMAN============
+*/
 
+.join-handyman-form-container .select-work-schedule {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.select-work-schedule-day {
+    white-space: nowrap;
+    flex: 1;
+}
 
+/*
+===========END OF JOIN-AS-HANDYMAN============
+*/
 
+/*
+===========PROFILE============
+*/
 
 .profile-maximize {
     border: 3px solid var(--color-pen);
@@ -708,9 +705,12 @@ li.selected {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-
 .profile-right .btn {
     align-self: center;
     font-size: 2rem;
     padding: 10px 15px;
 }
+
+/*
+===========END OF PROFILE============
+*/

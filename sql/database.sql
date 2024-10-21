@@ -1,4 +1,4 @@
-CREATE DATABASE handyman_db;
+CREATE DATABASE db_handyman;
 
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE handyman_skills (
     handyman_skill_id INT PRIMARY KEY AUTO_INCREMENT,
     profile_id INT UNIQUE NOT NULL,
     skill_id INT UNIQUE NOT NULL,
-    FOREIGN KEY (profile_id) REFERENCES handyman_profiles(profile_id) ON DELETE CASCADE
+    FOREIGN KEY (profile_id) REFERENCES handyman_profiles(profile_id) ON DELETE CASCADE,
     FOREIGN KEY (skill_id) REFERENCES skills(skill_id) ON DELETE CASCADE
 );
 
