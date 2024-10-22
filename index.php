@@ -1,5 +1,5 @@
 <?php
-require 'partials/header.php';
+include 'partials/header.php';
 ?>
 
 
@@ -8,7 +8,7 @@ require 'partials/header.php';
         <span>What job do you need a hand with..?</span>
         <div class="category-container">
             <ul>
-                <li class="selected"><a>Plumbing</a></li>
+                <li class="selected"><a href="#">Plumbing</a></li>
                 <li><a href="#">Electrical</a></li>
                 <li><a href="#">Painting</a></li>
                 <li><a href="#">Home cleaning</a></li>

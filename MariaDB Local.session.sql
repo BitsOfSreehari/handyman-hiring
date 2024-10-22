@@ -1,4 +1,6 @@
-CREATE DATABASE db_handyman;
+CREATE DATABASE handyman_db;
+
+USE handyman_db;
 
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,

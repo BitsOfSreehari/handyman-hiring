@@ -1,5 +1,5 @@
 <?php
-require 'partials/header.php';
+include 'partials/header.php';
 ?>
 
 
@@ -78,5 +78,5 @@ require 'partials/header.php';
 
 
 <?php
-require 'partials/footer.php';
+include 'partials/footer.php';
 ?>

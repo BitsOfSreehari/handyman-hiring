@@ -6,7 +6,7 @@
     <title>Handyman</title>
 
     <!-- CUSTOM STYLE SHEET -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>css/style.css">
     <!-- FONTAWESOME CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GOOGLE FONT(Patrick Hand SC) -->
@@ -21,7 +21,7 @@
             <section class="form-section">
                 <span class="form-title">Join as Handyman</span>
                 <div class="form-container join-handyman-form-container">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <h2>Profile picture:</h2>
                         <div>
                             <input type="file">

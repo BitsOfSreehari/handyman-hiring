@@ -1,3 +1,16 @@
+<?php
+session_start();
+require 'config/constants.php';
+
+// get entered data back on error
+$full_name = $_SESSION['signup-data']['full_name'] ?? null;
+$phone_number = $_SESSION['signup-data']['phone_number'] ?? null;
+$email = $_SESSION['signup-data']['email'] ?? null;
+$create_password = $_SESSION['signup-data']['create_password'] ?? null;
+$confirm_password = $_SESSION['signup-data']['confirm_password'] ?? null;
+unset($_SESSION['signup-data']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +19,7 @@
     <title>Handyman</title>
 
     <!-- CUSTOM STYLE SHEET -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>css/style.css">
     <!-- FONTAWESOME CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GOOGLE FONT(Patrick Hand SC) -->
@@ -17,34 +30,43 @@
 
 <body>
     <main>
+        <?php if(isset($_SESSION['signup'])): ?> 
+            <div class="alert-message alert-message--red">
+                <span>
+                    <?= $_SESSION['signup'];
+                        unset($_SESSION['signup']);
+                    ?>
+                </span>
+            </div>
+        <?php endif ?>
         <div class="form-wrapper">
             <section class="form-section">
                 <h2 class="form-title">Register</h2>
                 <div class="form-container sign-form-container">
-                    <form action="" method="POST">
+                    <form action="<?= ROOT_URL ?>signup-logic.php" method="POST">
                         <div class="form-group">
-                            <label for="">Name: </label>
-                            <input type="text" name="" id="">
+                            <label for="full_name">Name: </label>
+                            <input type="text" maxlength="50" value="<?= $full_name ?>" name="full_name" id="full_name">
                         </div>
 
                         <div class="form-group">
-                            <label for="">Phone No. </label>
-                            <input type="text" name="" id="">
+                            <label for="phone_number">Phone No. </label>
+                            <input type="tel" maxlength="10" minlength="10" value="<?= $phone_number ?>" name="phone_number" id="phone_number">
                         </div>
 
                         <div class="form-group">
-                            <label for="">Email: </label>
-                            <input type="text" name="" id="">
+                            <label for="email">Email: </label>
+                            <input type="email" value="<?= $email ?>" name="email" id="email">
                         </div>
 
                         <div class="form-group">
-                            <label for="">Password: </label>
-                            <input type="text" name="" id="">
+                            <label for="create_password">Password: </label>
+                            <input type="password" maxlength="20" value="<?= $create_password ?>" name="create_password" id="create_password">
                         </div>
 
                         <div class="form-group">
-                            <label for="">Confirm Password: </label>
-                            <input type="text" name="" id="">
+                            <label for="confirm_password">Confirm Password: </label>
+                            <input type="password" maxlength="20" name="confirm_password" id="confirm_password">
                         </div>
                         
                         <div class="form-control">
