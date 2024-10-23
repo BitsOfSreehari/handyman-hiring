@@ -1,3 +1,7 @@
+<?php
+require 'config/database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +32,7 @@
                         </div>
 
                         <button type="submit" class="btn" name="submit">Save</button>
-                        <a href="#" class="btn danger">Delete</a>
+                        <a href="#" class="btn red">Delete</a>
 
                         <div class="handyman-list">
                             <h2>Handyman list:</h2>

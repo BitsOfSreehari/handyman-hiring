@@ -31,7 +31,7 @@ include 'partials/header.php';
                             <td>YES</td>
                             <td>NO</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-user.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
 
                         <tr>
@@ -39,7 +39,7 @@ include 'partials/header.php';
                             <td>YES</td>
                             <td>NO</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-user.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
 
                         <tr>
@@ -47,7 +47,7 @@ include 'partials/header.php';
                             <td>YES</td>
                             <td>NO</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-user.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
 
                         <tr>
@@ -55,7 +55,7 @@ include 'partials/header.php';
                             <td>YES</td>
                             <td>NO</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-user.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>

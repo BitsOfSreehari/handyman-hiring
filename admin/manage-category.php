@@ -36,25 +36,25 @@ include 'partials/header.php';
                         <tr>
                             <td>Plumbing</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-category.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
 
                         <tr>
                             <td>Plumbing</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-category.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
 
                         <tr>
                             <td>Plumbing</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-category.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
 
                         <tr>
                             <td>Plumbing</td>
                             <td><a href="<?= ROOT_URL ?>admin/edit-category.php" class="btn">Edit</a></td>
-                            <td><a href="#" class="btn danger">Delete</a></td>
+                            <td><a href="#" class="btn red">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>

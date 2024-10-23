@@ -30,11 +30,11 @@ unset($_SESSION['signup-data']);
 
 <body>
     <main>
-        <?php if(isset($_SESSION['signup'])): ?> 
+        <?php if(isset($_SESSION['signup'])) : ?> 
             <div class="alert-message alert-message--red">
                 <span>
                     <?= $_SESSION['signup'];
-                        unset($_SESSION['signup']);
+                    unset($_SESSION['signup']);
                     ?>
                 </span>
             </div>
