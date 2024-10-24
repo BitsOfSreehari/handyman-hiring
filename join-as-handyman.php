@@ -25,10 +25,10 @@ require 'config/database.php';
             <section class="form-section">
                 <span class="form-title">Join as Handyman</span>
                 <div class="form-container join-handyman-form-container">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="<?= ROOT_URL ?>join-as-handyman-logic.php" method="POST" enctype="multipart/form-data">
                         <h2>Profile picture:</h2>
-                        <div>
-                            <input type="file">
+                        <div class="select-avatar">
+                            <input type="file" accept=".jpeg,.jpg,.png" name="avatar" id="avatar">
                         </div>
 
                         <h2>Add skills:</h2>

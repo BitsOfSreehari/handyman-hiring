@@ -5,6 +5,10 @@ include 'partials/header.php';
 if ($_SESSION['user-is-admin'] != 1) {
     header('location: ' . ROOT_URL . 'admin/');
 }
+
+// // get entered data back on error
+$skill_name = $_SESSION['add-category-data']['skill_name'] ?? null;
+unset($_SESSION['add-category-data']);
 ?>
 
 
@@ -21,14 +25,31 @@ if ($_SESSION['user-is-admin'] != 1) {
     </div>
 
     <main>
+    <?php if (isset($_SESSION['add-category-success'])) : ?>
+            <div class="alert-message alert-message--green">
+                <span>
+                    <?= $_SESSION['add-category-success'];
+                    unset($_SESSION['add-category-success']);
+                    ?>
+                </span>
+            </div>
+        <?php endif ?>
+        <?php if(isset($_SESSION['add-category'])) : ?> 
+            <div class="alert-message alert-message--red">
+                <span>
+                    <?= $_SESSION['add-category'];
+                    unset($_SESSION['add-category']);
+                    ?>
+                </span>
+            </div>
+        <?php endif ?>
         <div class="dash_right manage-category">
-            
-            <form action="" method="POST">
+            <form action="<?= ROOT_URL ?>admin/manage-category-logic.php" method="POST">
                 <div class="form-group">
                     <label for="">Add category:</label>
-                    <input type="text" name="" id="">
+                    <input type="text" value="<?= $skill_name ?>" name="skill_name" id="skill_name">
                 </div>
-                <button type="submit" class="btn" name="submit">Submit</button>
+                <button type="submit" class="btn" name="submit">Add</button>
             </form>
 
             <table>

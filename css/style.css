@@ -505,6 +505,18 @@ li.selected {
 }
 
 /* PROFESSIONAL INFO */
+.select-avatar {
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.select-avatar input[type='file'] {
+    margin-top: 10px;
+    border: 2px solid var(--color-pen);
+    padding: 5px;
+    width: 200px;
+}
+
 .select-category {
     user-select: none;
     -webkit-user-select: none;
