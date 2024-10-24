@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'config/constants.php';
+require 'config/database.php';
 
 // get entered data back on error
 $full_name = $_SESSION['signup-data']['full_name'] ?? null;

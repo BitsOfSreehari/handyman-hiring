@@ -1,5 +1,10 @@
 <?php
 require 'config/database.php';
+
+// redirect to personal info if user is not an admin
+if ($_SESSION['user-is-admin'] != 1) {
+    header('location: ' . ROOT_URL . 'admin/');
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'config/constants.php';
+require 'config/database.php';
 
 // login with
 $selected_login_with = $_SESSION['selected_login_with'] = isset($_POST['login_with']) ? $_POST['login_with'] : 'ph';

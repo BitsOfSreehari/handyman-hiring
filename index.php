@@ -194,7 +194,7 @@ include 'partials/header.php';
     <section class="nav-section">
         <div class="account-interact">
             <a href="<?= ROOT_URL ?>admin" class="btn">Account settings</a>
-            <a href="#" class="btn">Logout</a>
+            <a href="<?= ROOT_URL ?>logout.php" class="btn">Logout</a>
         </div>
         <div class="join-handyman">
             <p>Interested in a side gig? Handyman.com is perfect for anyone looking to earn extra income—students, professionals, or anyone with spare time. Join our network today to offer your services or request assistance, and experience the perfect blend of convenience and opportunity!</p>

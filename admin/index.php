@@ -7,7 +7,9 @@ include 'partials/header.php';
     <div class="dash_left">
         <ul>
             <li class="selected"><a href="<?= ROOT_URL ?>admin/index.php">Personal Info</a></li>
-            <li><a href="<?= ROOT_URL ?>admin/professional-info.php">Professional Info</a></li>
+            <?php if ($_SESSION['user-is-handyman'] == 1) : ?>
+                <li><a href="<?= ROOT_URL ?>admin/professional-info.php">Professional Info</a></li>
+            <?php endif ?>
             <?php if ($_SESSION['user-is-admin'] == 1) : ?>
                 <li><a href="<?= ROOT_URL ?>admin/manage-user.php">Manage Users</a></li>
                 <li><a href="<?= ROOT_URL ?>admin/manage-category.php">Manage Categories</a></li>

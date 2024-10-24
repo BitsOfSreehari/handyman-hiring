@@ -1,5 +1,4 @@
 <?php
-session_start();
 require 'config/database.php';
 
 // get signin form data if signin button is clicked
@@ -50,7 +49,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['user-is-admin'] = 0;
                 }
                 // log user in
-                header('location: ' . ROOT_URL . 'admin/');
+                header('location: ' . ROOT_URL);
             } else {
             $_SESSION['signin'] = "Please check your input";
             }

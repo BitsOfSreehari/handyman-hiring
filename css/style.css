@@ -430,7 +430,7 @@ li.selected {
 
 .dashboard_container {
     margin: 5rem 0;
-    height: 70vh;
+    height: fit-content;
     border: 3px solid var(--color-pen);
     display: grid;
     grid-template-columns: .3fr 1fr;
