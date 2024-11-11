@@ -6,6 +6,37 @@ if (!isset($_SESSION['user-id'])) {
     header('location: ' . ROOT_URL . 'signin.php');
     die();
 }
+
+// check if the user exists in the database
+$user_id = $_SESSION['user-id'];
+$sql = "SELECT * FROM users WHERE user_id = $user_id";
+$result = mysqli_query($connection, $sql);
+// if the user doesn't exist, destroy the session and redirect
+if (mysqli_num_rows($result) == 0) {
+    session_unset();
+    session_destroy();
+    header('location: ' . ROOT_URL . 'signin.php');
+    die();
+}
+
+// update user role sessions
+$fetch_user_role_query = "SELECT is_handyman, is_admin FROM users WHERE user_id='$user_id'";
+$fetch_user_role_result = mysqli_query($connection, $fetch_user_role_query);
+$user_role_record = mysqli_fetch_assoc($fetch_user_role_result);
+$user_is_handyman = $user_role_record['is_handyman'];
+$user_is_admin = $user_role_record['is_admin'];
+// set session for handyman
+if ($user_is_handyman == 1) {
+    $_SESSION['user-is-handyman'] = 1;
+} else {
+    $_SESSION['user-is-handyman'] = 0;
+}
+// set session for admin
+if ($user_is_admin == 1) {
+    $_SESSION['user-is-admin'] = 1;
+} else {
+    $_SESSION['user-is-admin'] = 0;
+}
 ?>
 
 

@@ -50,16 +50,16 @@ if (isset($_POST['submit'])) {
         // insert data
         $insert_user_query = "INSERT INTO users (full_name, phone_number, email, password_hash) VALUES ('$full_name', '$phone_number', '$email', '$password_hash');";
         $insert_user_result = mysqli_query($connection, $insert_user_query);
+        // redirect to login page on success
         if (!mysqli_errno($connection)) {
             $_SESSION['signup-success'] = "Registraion successfull. Please Log in";
-            // redirect to login page on success
             header('location: ' . ROOT_URL . 'signin.php');
             die();
         }
     }
 
 } else {
-    // bounce back to signup page if signup button not clicked
+    // bounce back to signin page if signup button not clicked
     header('location: ' . ROOT_URL . 'signin.php');
     die();
 }

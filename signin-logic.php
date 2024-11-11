@@ -25,7 +25,6 @@ if (isset($_POST['submit'])) {
         // fetch user from database
         $fetch_user_query = "SELECT * FROM users WHERE phone_number='$phone_number' OR email='$email'";
         $fetch_user_result = mysqli_query($connection, $fetch_user_query);
-
         if (mysqli_num_rows($fetch_user_result) === 1) {
             // covert the record into assoc array
             $user_record = mysqli_fetch_assoc($fetch_user_result);
@@ -67,7 +66,7 @@ if (isset($_POST['submit'])) {
     }
 
 } else {
-    // bounce back to signup page if signin button not clicked
+    // bounce back to signin page if signin button not clicked
     header('location: ' . ROOT_URL . 'signin.php');
     die();
 }
