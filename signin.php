@@ -65,22 +65,25 @@ unset($_SESSION['signin-data']);
                         <?php
                         switch ($selected_login_with) {
                             case 'ph':
-                                echo '<div class="form-group">
-                                            <label for="phone_number">Phone No. </label>
-                                            <input type="tel" maxlength="10" minlength="10" value="' . $phone_number . '" name="phone_number" id="phone_number">
-                                        </div>';
+                                echo '
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone No. </label>
+                                        <input type="tel" maxlength="10" minlength="10" value="' . $phone_number . '" name="phone_number" id="phone_number">
+                                    </div>';
                                 break;
                             case 'mail':
-                                echo '<div class="form-group">
-                                            <label for="email">Email: </label>
-                                            <input type="email" value="' . $email . '" name="email" id="email">
-                                        </div>';
+                                echo '
+                                    <div class="form-group">
+                                        <label for="email">Email: </label>
+                                        <input type="email" value="' . $email . '" name="email" id="email">
+                                    </div>';
                                 break;
                             default:
-                                echo '<div class="form-group">
-                                            <label for="phone_number">Phone No. </label>
-                                            <input type="tel" maxlength="10" minlength="10" value="' . $phone_numbe . '" name="phone_number" id="phone_number">
-                                        </div>';
+                                echo '
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone No. </label>
+                                        <input type="tel" maxlength="10" minlength="10" value="' . $phone_numbe . '" name="phone_number" id="phone_number">
+                                    </div>';
                                 break;
                         }
                         ?>

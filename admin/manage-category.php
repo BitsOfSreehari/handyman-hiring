@@ -47,7 +47,7 @@ unset($_SESSION['add-category-data']);
             <form action="<?= ROOT_URL ?>admin/manage-category-logic.php" method="POST">
                 <div class="form-group">
                     <label for="">Add category:</label>
-                    <input type="text" value="<?= $skill_name ?>" name="skill_name" id="skill_name">
+                    <input type="text" maxlength="75" value="<?= $skill_name ?>" name="skill_name" id="skill_name">
                 </div>
                 <button type="submit" class="btn" name="submit">Add</button>
             </form>

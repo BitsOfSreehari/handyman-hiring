@@ -1,23 +1,19 @@
 <?php
 require 'config/database.php';
 
+$selected_login_with = $_SESSION['selected_login_with'];
+unset($_SESSION['selected_login_with']);
+
 // get signin form data if signin button is clicked
 if (isset($_POST['submit'])) {
-    $phone_number = "";
-    $email = "";
-    if ($_SESSION['selected_login_with'] === 'ph') {
-        $phone_number = filter_var($_POST['phone_number'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }
-    if ($_SESSION['selected_login_with'] === 'mail') {
-        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    }
-    unset($_SESSION['selected_login_with']);
+    $phone_number = isset($_POST['phone_number']) ? filter_var($_POST['phone_number'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
+    $email = isset($_POST['email']) ? filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) : null;
     $password = filter_var($_POST['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     // validate inputs
-    if (!$email && !$phone_number) {
+    if ($selected_login_with === 'ph' && !$phone_number) {
         $_SESSION['signin'] = "Phone No. required";
-    } elseif (!$phone_number && !$email) {
+    } elseif ($selected_login_with === 'mail' && !$email) {
         $_SESSION['signin'] = "Email required";
     } elseif (!$password) {
         $_SESSION['signin'] = "Password required";

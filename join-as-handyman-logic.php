@@ -27,13 +27,13 @@ if (isset($_POST['submit'])) {
     } elseif (!$work_location) {
         $_SESSION['join'] = "Preferred Work Location not specified";
     } elseif (!$profile_description) {
-        $_SESSION['join'] = "Please provide a Profile descriptionription";
+        $_SESSION['join'] = "Please provide a Profile description";
     } else {
         // rename avatar
         $uniq_id = uniqid('avt_');
-        $avatar_name = $avatar['name'] . $uniq_id;
+        $avatar_name = $uniq_id . $avatar['name'];
         $avatar_tmp_name = $avatar['tmp_name'];
-        $avatar_destination_path = 'images/' . $user_id;
+        $avatar_destination_path = 'images/' . $avatar_name;
         // validate image
         $allowed_files = ['png', 'jpg', 'jpeg'];
         $extension = explode('.', $avatar_name);
@@ -55,23 +55,23 @@ if (isset($_POST['submit'])) {
         //upload avatar
         move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
         // insert profile data
-        $insert_profile_query = "INSERT INTO handyman_profiles (user_id, profile_picture_url, other_job, work_start_time, work_end_time, work_location, profile_description) VALUES ('$user_id', '$avatar_destination_path', '$other_job', '$work_start_time', '$work_end_time', '$work_location', '$profile_description')";
+        $insert_profile_query = "INSERT INTO handyman_profiles (user_id, profile_picture_url, other_job, work_start_time, work_end_time, work_location, profile_description) VALUES ($user_id, '$avatar_destination_path', '$other_job', '$work_start_time', '$work_end_time', '$work_location', '$profile_description')";
         // get the newly inserted profile_id
         if (mysqli_query($connection, $insert_profile_query)) {
             $profile_id = mysqli_insert_id($connection);
         }
         // insert work days
         foreach ($work_days as $day) {
-            $insert_work_days_query = "INSERT INTO handyman_work_days (profile_id, day_of_week) VALUES ('$profile_id', '$day')";
+            $insert_work_days_query = "INSERT INTO handyman_work_days (profile_id, day_of_week) VALUES ($profile_id, '$day')";
             mysqli_query($connection, $insert_work_days_query);
         }
         // insert skills 
         foreach ($skills as $skill) {
-            $insert_skills_query = "INSERT INTO handyman_skills (profile_id, skill_id) VALUES ('$profile_id', '$skill')";
+            $insert_skills_query = "INSERT INTO handyman_skills (profile_id, skill_id) VALUES ($profile_id, '$skill')";
             mysqli_query($connection, $insert_skills_query);
         }
         // update user-is-handyman flag in users table
-        $query = "UPDATE users SET is_handyman = 1 WHERE user_id = '$user_id'";
+        $query = "UPDATE users SET is_handyman = 1 WHERE user_id = $user_id";
         mysqli_query($connection, $query);
 
         // redirect to professional-info on success

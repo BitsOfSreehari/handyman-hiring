@@ -45,13 +45,13 @@ if ($_SESSION['user-is-handyman'] == 1) {
 
 // get entered data back on error
 $selected_skills = $_SESSION['join-data']['skills'] ?? [];
-$selected_work_days = $_SESSION['join-data']['work_days'] ?? ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']; // make all workdays checked by default
+$other_job = $_SESSION['join-data']['other_job'] ?? null;
+$selected_work_days = $_SESSION['join-data']['work_days'] ?? [0, 1, 2, 3, 4, 5, 6]; // make all workdays checked by default
 $work_start_time = $_SESSION['join-data']['work_start_time'] ?? '06:00';
 $work_end_time = $_SESSION['join-data']['work_end_time'] ?? '18:00';
 $work_location = $_SESSION['join-data']['work_location'] ?? null;
 $profile_description = $_SESSION['join-data']['profile_description'] ?? null;
 unset($_SESSION['join-data']);
-
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +115,7 @@ unset($_SESSION['join-data']);
                             ?>
 
                             <div class="form-group">
-                                <input type="text" name="other_job" id="other-job" placeholder="Other interested jobs:">
+                                <input type="text" name="other_job" id="other-job" value="<?= $other_job ?>" placeholder="Other interested jobs:">
                             </div>
                         </div>
 
@@ -123,24 +123,26 @@ unset($_SESSION['join-data']);
                         <div class="select-work-schedule">
                             <?php
                             // day check boxes
-                            $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                            $days = [0, 1, 2, 3, 4, 5, 6];
+                            $day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
                             foreach ($days as $day) {
+                                $day_name = $day_names[$day];
                                 // check if the day is in the selected_work_days array
                                 $is_checked = in_array($day, $selected_work_days) ? 'checked' : '';
                                 echo '
                                     <div class="select-work-schedule-day">
-                                        <input type="checkbox" name="work_days[]" id="'. $day . '" value="'. $day . '" ' . $is_checked . '>
-                                        <label for="'. $day . '">'. $day . '</label>
+                                        <input type="checkbox" name="work_days[]" id="'. $day_name . '" value="'. $day . '" ' . $is_checked . '>
+                                        <label for="'. $day_name . '">'. $day_name . '</label>
                                     </div>';
                             }
                             ?>
 
                             <div>
                                 <label for="work_start_time">From: </label>
-                                <input type="time" name="work_start_time" id="work_start_time"  value="<?= $work_start_time ?>">
+                                <input type="time" value="<?= $work_start_time ?>" name="work_start_time" id="work_start_time">
                                 <span>-</span>
                                 <label for="work_end_time">To: </label>
-                                <input type="time" name="work_end_time" id="work_end_time" value="<?= $work_end_time ?>">
+                                <input type="time" value="<?= $work_end_time ?>" name="work_end_time" id="work_end_time">
                             </div>
                         </div>
 
