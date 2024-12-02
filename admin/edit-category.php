@@ -5,6 +5,30 @@ require 'config/database.php';
 if ($_SESSION['user-is-admin'] != 1) {
     header('location: ' . ROOT_URL . 'admin/');
 }
+
+// get skill id and set session
+if (isset($_GET['skill-id'])) {
+    $skill_id = $_GET['skill-id'];
+    $_SESSION['skill-id'] = $skill_id;
+    $skill_name = $_GET['item'];
+    $_SESSION['skill-name'] = $skill_name;
+} else {
+    header('location: ' . ROOT_URL . 'admin/');
+}
+
+// get profiles with this skill from db
+$skill_query = "
+    SELECT
+        u.full_name
+    FROM
+        users u
+    JOIN
+        handyman_profiles hp ON u.user_id = hp.user_id
+    JOIN
+        handyman_skills hs ON hp.profile_id = hs.profile_id
+    WHERE
+        hs.skill_id = $skill_id";
+$skills_result = mysqli_query($connection, $skill_query);
 ?>
 
 <!DOCTYPE html>
@@ -26,36 +50,52 @@ if ($_SESSION['user-is-admin'] != 1) {
 
 <body>
     <main>
+        <?php if (isset($_SESSION['category'])) : ?> 
+            <div class="alert-message alert-message--red">
+                <span>
+                    <?= $_SESSION['category'];
+                    unset($_SESSION['category']);
+                    ?>
+                </span>
+            </div>
+        <?php elseif (isset($_SESSION['update-category-success'])) : ?>
+            <div class="alert-message alert-message--green">
+                <span>
+                    <?php
+                    echo $_SESSION['update-category-success'];
+                    unset($_SESSION['update-category-success']);
+                    ?>
+                </span>
+            </div>
+        <?php endif ?>
         <div class="form-wrapper">
             <section class="form-section">
                 <span class="form-title">Edit Category</span>
                 <div class="form-container join-handyman-form-container professional-info">
-                    <form action="" method="POST">
+                    <form action="edit-category-logic.php" method="POST">
                         <div class="form-group">
-                            <label for="">Category title: </label>
-                            <input type="text" name="" id="" value="Plumbing">
+                            <label for="category">Category title: </label>
+                            <input type="text" name="category" id="category" value="<?= $skill_name ?>">
                         </div>
 
                         <button type="submit" class="btn" name="submit">Save</button>
-                        <a href="#" class="btn red">Delete</a>
+                        <a href="<?= ROOT_URL . 'confirm-delete.php?delete=Category&id=' . $skill_id . '&item=' . $skill_name ?>" class="btn red">Delete</a>
 
                         <div class="handyman-list">
                             <h2>Handyman list:</h2>
-                            <ul>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                                <li>John Doe</li>
-                            </ul>
+                            <?php
+                            if (mysqli_num_rows($skills_result) > 0) {
+                                while ($name = mysqli_fetch_assoc($skills_result)) {
+                                    echo '<ul>
+                                            <li>' . $name['full_name'] . '</li>
+                                        </ul>';
+                                }
+                            } else {
+                                echo '<div class="alert-message--red">
+                                        <span>No profiles are associated with this category.</span>
+                                    </div>';
+                            }
+                            ?>
                         </div>
                         
                     </form>

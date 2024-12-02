@@ -7,19 +7,19 @@ if (isset($_POST['submit'])) {
 
     // validate inputs
     if (!$skill_name) {
-        $_SESSION['add-category'] = "Category name is empty.";
+        $_SESSION['category'] = "Category name is empty.";
     } elseif(strlen($skill_name) > 75) {
-        $_SESSION['add-category'] = "Category name must be under 75 characters.";
+        $_SESSION['category'] = "Category name must be under 75 characters.";
     }
     // check duplicate skill name
     $category_check_query = "SELECT * FROM skills WHERE skill_name='$skill_name'";
     $category_check_result = mysqli_query($connection, $category_check_query);
     if (mysqli_num_rows($category_check_result) > 0) {
-        $_SESSION['add-category'] = 'Category is already added.';
+        $_SESSION['category'] = 'Category is already added.';
     }
 
     // reload on error
-    if (isset($_SESSION['add-category'])) {
+    if (isset($_SESSION['category'])) {
         // pass entered data back to form
         $_SESSION['add-category-data'] = $_POST;
         header('location: ' . ROOT_URL . 'admin/manage-category.php');
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
         $insert_query = "INSERT INTO skills (skill_name) VALUES ('$skill_name')";
         $insert_query_result = mysqli_query($connection, $insert_query);
         if (mysqli_errno($connection)) {
-            $_SESSION['add-category'] = "Error adding category";
+            $_SESSION['category'] = "Error adding category";
             header('location: ' . ROOT_URL . 'admin/manage-category.php');
             die();
         } else {
