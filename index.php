@@ -10,17 +10,24 @@ if (isset($_GET['skill_id'])) {
 $fetch_skills_query = "SELECT skill_id, skill_name FROM skills";
 $fetch_skills_result = mysqli_query($connection, $fetch_skills_query);
 
-// set selected skill id to first skill on first load
+// set selected skill id to skill id from session if it exists
 if (isset($_SESSION['selected_skill_id'])) {
     $selected_skill_id = $_SESSION['selected_skill_id'];
 } elseif (mysqli_num_rows($fetch_skills_result) > 0) {
+    // set selected skill id to first skill on first load
     $row = mysqli_fetch_assoc($fetch_skills_result);
     $selected_skill_id = (int) $row['skill_id'];
     mysqli_data_seek($fetch_skills_result, 0);
 }
 
 // get profiles from db
-if (mysqli_num_rows($fetch_skills_result) > 0 && !isset($_GET['search'])) {
+if (isset($selected_skill_id)) {
+    $search_term = isset($_GET['search']) ? filter_var($_GET['search'], FILTER_SANITIZE_SPECIAL_CHARS) : '';
+    if (mysqli_num_rows($fetch_skills_result) > 0 && $search_term) {
+        $condition = "p.other_job LIKE '%$search_term%' OR s.skill_name LIKE '%$search_term%'";
+    } else {
+        $condition = "s.skill_id = $selected_skill_id";
+    }
     $fetch_profiles_query = "
         SELECT
             p.profile_id,
@@ -57,59 +64,12 @@ if (mysqli_num_rows($fetch_skills_result) > 0 && !isset($_GET['search'])) {
         LEFT JOIN
             handyman_rating hr ON p.profile_id = hr.profile_id
         WHERE
-            s.skill_id = $selected_skill_id
+            $condition
         GROUP BY
             p.profile_id
             ORDER BY u.full_name ASC
-    ";
+        ";
     $fetch_profiles_result = mysqli_query($connection, $fetch_profiles_query);
-}
-
-// get search term and show profiles in association
-if (isset($_GET['search'])) {
-    $search_term = $_GET['search'];
-    $search_query = "
-        SELECT
-            p.profile_id,
-            p.profile_picture_url,
-            u.full_name,
-            p.work_location,
-            p.other_job,
-            p.work_start_time,
-            p.work_end_time,
-            GROUP_CONCAT(
-                DISTINCT CASE
-                    WHEN hwd.day_of_week = 0 THEN 'Mon'
-                    WHEN hwd.day_of_week = 1 THEN 'Tue'
-                    WHEN hwd.day_of_week = 2 THEN 'Wed'
-                    WHEN hwd.day_of_week = 3 THEN 'Thu'
-                    WHEN hwd.day_of_week = 4 THEN 'Fri'
-                    WHEN hwd.day_of_week = 5 THEN 'Sat'
-                    WHEN hwd.day_of_week = 6 THEN 'Sun'
-                END
-                ORDER BY hwd.day_of_week ASC
-                SEPARATOR ' | '
-            ) AS work_days,
-            AVG(hr.rating) AS average_rating
-        FROM
-            handyman_profiles p
-        JOIN
-            users u ON p.user_id = u.user_id
-        JOIN
-            handyman_skills hs ON p.profile_id = hs.profile_id
-        JOIN
-            skills s ON hs.skill_id = s.skill_id
-        JOIN
-            handyman_work_days hwd ON p.profile_id = hwd.profile_id
-        LEFT JOIN
-            handyman_rating hr ON p.profile_id = hr.profile_id
-        WHERE
-            p.other_job LIKE '%$search_term%' OR s.skill_name LIKE '%$search_term%'
-        GROUP BY
-            p.profile_id
-            ORDER BY u.full_name ASC
-    ";
-    $fetch_profiles_result = mysqli_query($connection, $search_query);
 }
 ?>
 
@@ -142,7 +102,7 @@ if (isset($_GET['search'])) {
     </section>
     <!-- =============END OF CATOGORIES============= -->
     <section class="profile-section">
-        <?php if ($fetch_profiles_result->num_rows > 0): ?>
+        <?php if (isset($fetch_profiles_result) && $fetch_profiles_result->num_rows > 0): ?>
             <?php while ($row = $fetch_profiles_result->fetch_assoc()): ?>
                 <a href="<?= ROOT_URL ?>profile.php?profile_id=<?= $row['profile_id'] ?>">
                     <div class="profile">
@@ -182,7 +142,7 @@ if (isset($_GET['search'])) {
             <?php endwhile ?>
             <?php else: ?>
                 <div class="alert-message--red">
-                    <span>No Handyman available for now.</span>
+                    <span>No Handyman available for this role for now.</span>
                 </div>
             <?php endif ?>
     </section>
@@ -206,5 +166,5 @@ if (isset($_GET['search'])) {
 
 
 <?php
-include 'partials/footer.php';
+include 'partials/footer.html';
 ?>

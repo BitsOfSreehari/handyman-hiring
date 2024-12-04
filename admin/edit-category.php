@@ -79,7 +79,7 @@ $skills_result = mysqli_query($connection, $skill_query);
                         </div>
 
                         <button type="submit" class="btn" name="submit">Save</button>
-                        <a href="<?= ROOT_URL . 'confirm-delete.php?delete=Category&id=' . $skill_id . '&item=' . $skill_name ?>" class="btn red">Delete</a>
+                        <a href="<?= ROOT_URL . 'confirm-delete.php?delete=Category&id=' . $skill_id . '&item=' . $skill_name . '&admin-delete=yes'?>" class="btn red">Delete</a>
 
                         <div class="handyman-list">
                             <h2>Handyman list:</h2>

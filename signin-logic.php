@@ -34,6 +34,10 @@ if (isset($_POST['submit'])) {
                 // set session for handyman
                 if ($user_is_handyman == 1) {
                     $_SESSION['user-is-handyman'] = 1;
+                    // set profile id session
+                    $query = "SELECT profile_id FROM handyman_profiles WHERE user_id = " . $user_record['user_id'];
+                    $result = mysqli_query($connection, $query);
+                    $_SESSION['profile-id'] = mysqli_fetch_column($result);
                 } else {
                     $_SESSION['user-is-handyman'] = 0;
                 }

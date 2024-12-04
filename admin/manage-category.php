@@ -29,42 +29,43 @@ unset($_SESSION['add-category-data']);
     </div>
 
     <main>
-    <?php if (isset($_SESSION['add-category-success'])) : ?>
-        <div class="alert-message alert-message--green">
-            <span>
-                <?php
-                echo $_SESSION['add-category-success'];
-                unset($_SESSION['add-category-success']);
-                ?>
-            </span>
-        </div>
-    <?php elseif (isset($_SESSION['category'])) : ?> 
-        <div class="alert-message alert-message--red">
-            <span>
-                <?= $_SESSION['category'];
-                unset($_SESSION['category']);
-                ?>
-            </span>
-        </div>
-    <?php elseif (isset($_SESSION['delete'])) : ?>
-        <div class="alert-message alert-message--green">
-            <span>
-                <?php
-                echo $_SESSION['delete'];
-                unset($_SESSION['delete']);
-                ?>
-            </span>
-        </div>
-    <?php elseif (isset($_SESSION['delete-success'])) : ?>
-        <div class="alert-message alert-message--green">
-            <span>
-                <?php
-                echo $_SESSION['delete-success'];
-                unset($_SESSION['delete-success']);
-                ?>
-            </span>
-        </div>
-    <?php endif ?>
+        <?php if (isset($_SESSION['add-category-success'])) : ?>
+            <div class="alert-message alert-message--green">
+                <span>
+                    <?php
+                    echo $_SESSION['add-category-success'];
+                    unset($_SESSION['add-category-success']);
+                    ?>
+                </span>
+            </div>
+        <?php elseif (isset($_SESSION['category'])) : ?> 
+            <div class="alert-message alert-message--red">
+                <span>
+                    <?= $_SESSION['category'];
+                    unset($_SESSION['category']);
+                    ?>
+                </span>
+            </div>
+        <?php elseif (isset($_SESSION['delete'])) : ?>
+            <div class="alert-message alert-message--red">
+                <span>
+                    <?php
+                    echo $_SESSION['delete'];
+                    unset($_SESSION['delete']);
+                    ?>
+                </span>
+            </div>
+        <?php elseif (isset($_SESSION['delete-success'])) : ?>
+            <div class="alert-message alert-message--green">
+                <span>
+                    <?php
+                    echo $_SESSION['delete-success'];
+                    unset($_SESSION['delete-success']);
+                    ?>
+                </span>
+            </div>
+        <?php endif ?>
+        
         <div class="dash_right manage-category">
             <form action="<?= ROOT_URL ?>admin/manage-category-logic.php" method="POST">
                 <div class="form-group">
@@ -89,7 +90,7 @@ unset($_SESSION['add-category-data']);
                                 echo '<tr>
                                         <td>' . $category['skill_name'] . '</td>
                                         <td><a href="' . ROOT_URL . 'admin/edit-category.php?skill-id=' . $category['skill_id'] . '&item=' . $category['skill_name'] . '" class="btn">Edit</a></td>
-                                        <td><a href="' . ROOT_URL . 'confirm-delete.php?delete=Category&id=' . $category['skill_id'] . '&item=' . $category['skill_name'] . '" class="btn red">Delete</a></td>
+                                        <td><a href="' . ROOT_URL . 'confirm-delete.php?delete=Category&id=' . $category['skill_id'] . '&item=' . $category['skill_name'] . '&admin-delete=yes' . '" class="btn red">Delete</a></td>
                                     </tr>';
                             }
                         ?>

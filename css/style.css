@@ -67,6 +67,7 @@ ul{
     font-size: 1.5rem;
     cursor: pointer;
     outline: 0;
+    background-color: var(--color-bg);
 }
 
 .btn.red {
@@ -235,9 +236,10 @@ footer {
     height: 104px;
 }
 
-.profile-headsup li {
+.profile-headsup li:first-of-type {
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .profile .rating {
@@ -352,15 +354,18 @@ footer {
 .alert-message {
     width: fit-content;
     max-width: 500px;
-    font-size: 1.25rem;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    font-size: 1.25rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
-    padding: 5px 10px;
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 85%;
+    bottom: 10%;
     left: 50%;
     opacity: 0;
     animation: fadeInOut 4s forwards;
@@ -369,8 +374,7 @@ footer {
 .alert-message--red {
     background-color: var(--color-red);
     color: var(--color-bg);
-    max-height: 50px;
-    padding: 0 10px;
+    padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,6 +383,10 @@ footer {
 .alert-message--green {
     background-color: var(--color-green);
     color: var(--color-pen);
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes fadeInOut {
@@ -490,58 +498,68 @@ footer {
 
 .dash_right {
     height: 70vh;
-    padding: 5%;
+    padding: 20px 5% 20px 5%;
     overflow-y: scroll;
 }
 
 /* PERSONAL INFO */
-.personal-info img {
-    height: 120px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 50%;
-    mix-blend-mode: luminosity;
-}
-
 .personal-info {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .personal-info .form-group {
     margin-bottom: 30px;
 }
 
-.personal-info label{
-    font-size: 1.3rem;
-}
-
 .personal-info button {
     float: right;
 }
 
-.account-delete button{
-    font-size: 1.25rem;
-    border: 0;
-    outline: 0;
-    text-decoration: underline;
-    text-align: left;
-    color: var(--color-red);
-    width: 100%;
-}
-
 /* PROFESSIONAL INFO */
-.select-avatar {
-    margin-left: 20px;
-    margin-bottom: 30px;
+.professional-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.select-avatar input[type='file'] {
-    margin-top: 10px;
-    border: 2px solid var(--color-pen);
-    padding: 5px;
-    width: 200px;
+.professional-info .avatar-container {
+    position: relative;
+}
+
+.professional-info .avatar-container img {
+    height: 150px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    /* mix-blend-mode: luminosity; */
+    border: 1px solid var(--color-pen);
+}
+
+.professional-info .avatar-container .edit-icon {
+    position: absolute;
+    top: 75%;
+    left: 80%;
+    width: 25px;
+    height: 25px;
+    background-color: var(--color-bg);
+    padding: 2px;
+}
+
+.professional-info .edit-icon path {
+    fill: var(--color-pen);
+}
+
+.professional-info .avatar-container:hover path {
+    fill: var(--color-focus);
+}
+
+.professional-info input[type=file] {
+    display: none;
 }
 
 .select-category {
@@ -593,7 +611,9 @@ footer {
     -ms-user-select: none; /* For Internet Explorer/Edge */
     font-size: 1.5rem;
     margin-left: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .select-work-schedule input[type="checkbox"] {
@@ -625,7 +645,19 @@ footer {
     text-decoration: line-through;
 }
 
-.select-work-schedule input[type="time"] {
+
+.select-work-time {
+    user-select: none; /* For most browsers */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer/Edge */
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+
+.select-work-time input[type="time"] {
     border: none;
     border-bottom: 2px dashed var(--color-pen);
     background-color: var(--color-bg);
@@ -667,6 +699,10 @@ footer {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.dash_right table td:first-child {
+    text-align: left;
 }
 
 .dash_right table td:not(:last-child) {
@@ -749,9 +785,27 @@ footer {
 ===========JOIN-AS-HANDYMAN============
 */
 
+.join-handyman-form-container {
+    padding: 20px 40px;
+}
+
+.join-handyman-form-container .select-avatar label {
+    margin-left: 20px;
+}
+
+.join-handyman-form-container input[type=file] {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.join-handyman-form-container input[type=file]::file-selector-button {
+    display: none;
+}
+
+
 .join-handyman-form-container .select-work-schedule {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .select-work-schedule-day {
@@ -781,7 +835,7 @@ footer {
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
-    mix-blend-mode: luminosity;
+    /* mix-blend-mode: luminosity; */
 }
 
 .profile-maximize .rating {
@@ -797,6 +851,9 @@ footer {
     text-align: center;
     border: 2px solid var(--color-pen);
     padding: 5px;
+    max-width: 320px;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 
 .profile-right {
@@ -941,4 +998,50 @@ footer {
 
 /*
 ===========END OF CONFIRM DELETE============
+*/
+
+/*
+===========VIEW ACCOUNT============
+*/
+
+.view-account {
+    font-size: 1.7rem;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.view-account li {
+    margin: 0 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px dashed var(--color-pen);
+    font-size: 1.5rem;
+}
+
+.view-account img {
+    max-height: 200px;
+    object-fit: cover;
+    border: 1px solid var(--color-pen);
+    align-self: center;
+}
+
+.view-account .user-info {
+    border: 2px solid var(--color-pen);
+    padding: 10px;
+}
+
+.view-account .btn {
+    align-self: flex-end;
+}
+
+.view-account .profile-info {
+    border: 2px solid var(--color-pen);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+===========END OF VIEW ACCOUNT============
 */

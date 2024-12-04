@@ -1,6 +1,33 @@
 <?php
 require 'config/database.php';
 
+// back url for returnining
+if (isset($_SERVER['HTTP_REFERER'])) {
+    // get the referer URL
+    $referer = $_SERVER['HTTP_REFERER'];
+
+    // array of trusted domains or URLs
+    $trusted_domains = [
+        'localhost'
+    ];
+
+    // extract domain from referer
+    $parsed_referer = parse_url($referer, PHP_URL_HOST);
+
+    // check if the referer's domain is in the list of trusted domains
+    if (in_array($parsed_referer, $trusted_domains)) {
+        // redirect to the referer URL if it is from a trusted domain
+        $back_url = $referer;
+    } else {
+        // redirect to a default page if domain is not trusted
+        $back_url = ROOT_URL . 'admin';
+    }
+} else {
+    // if there is no referer set
+    $back_url = ROOT_URL . 'admin';
+}
+$_SESSION['back-url'] = $back_url;
+
 // get delete type and item and set session
 $delete_type = $_GET['delete'];
 $_SESSION['delete-type'] = $delete_type;
@@ -8,6 +35,11 @@ $delete_item_id = $_GET['id'];
 $_SESSION['delete-item-id'] = $delete_item_id;
 $delete_item_name = $_GET['item'];
 $_SESSION['delete-item-name'] = $delete_item_name;
+
+// check if admin is deleting
+if (isset($_GET['admin-delete'])) {
+    $admin_delete = ($_GET['admin-delete'] == 'yes') ? true : false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +61,16 @@ $_SESSION['delete-item-name'] = $delete_item_name;
 <body>
     <main>
         <div class="delete-container">
-            <?php if ($delete_type == 'account'): ?>
+            <?php if (isset($admin_delete) && $admin_delete === true): ?>
+                <h4>Are you sure you want to delete the <?= $delete_type . ' - ' . $delete_item_name ?>?</h4>
+            <?php elseif ($delete_type == 'Account' || $delete_type == 'Profile'): ?>
                 <h4>Are you sure you want to delete your <?= $delete_type ?>?</h4>
             <?php else: ?>
                 <h4>Are you sure you want to delete the <?= $delete_type, ' - ', $delete_item_name ?>?</h4>
             <?php endif ?>
             <form action="<?= ROOT_URL ?>confirm-delete-logic.php" method="POST">
                 <button type="submit" class="btn red" name="confirm">Confirm</button>
-                <button type="submit" class="btn" name="cancel">Cancel</button>
+                <a class="btn" href="<?= $back_url ?>" name="cancel">Cancel</a>
             </form>
         </div>
         </main>

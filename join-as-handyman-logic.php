@@ -1,7 +1,7 @@
 <?php
 require 'config/database.php';
 
-// get signup form data if signup button clicked
+// get join form data if submit button clicked
 if (isset($_POST['submit'])) {
     $user_id = $_SESSION['user-id'];
     $avatar = $_FILES['avatar'];
@@ -59,6 +59,8 @@ if (isset($_POST['submit'])) {
         // get the newly inserted profile_id
         if (mysqli_query($connection, $insert_profile_query)) {
             $profile_id = mysqli_insert_id($connection);
+            // set or override session for profile_id
+            $_SESSION['profile-id'] = $profile_id;
         }
         // insert work days
         foreach ($work_days as $day) {

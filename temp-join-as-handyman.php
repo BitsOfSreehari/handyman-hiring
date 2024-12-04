@@ -89,7 +89,6 @@ unset($_SESSION['join-data']);
                     <form action="<?= ROOT_URL ?>join-as-handyman-logic.php" method="POST" enctype="multipart/form-data">
                         <h2>Profile picture:</h2>
                         <div class="select-avatar">
-                            <label for="avatar" class="btn">Choose</label>
                             <input type="file" accept=".jpeg,.jpg,.png" name="avatar" id="avatar">
                         </div>
 
@@ -137,14 +136,14 @@ unset($_SESSION['join-data']);
                                     </div>';
                             }
                             ?>
-                        </div>
 
-                        <div class="select-work-time">
-                            <label for="work_start_time">From: </label>
-                            <input type="time" value="<?= $work_start_time ?>" name="work_start_time" id="work_start_time">
-                            <span>-</span>
-                            <label for="work_end_time">To: </label>
-                            <input type="time" value="<?= $work_end_time ?>" name="work_end_time" id="work_end_time">
+                            <div>
+                                <label for="work_start_time">From: </label>
+                                <input type="time" value="<?= $work_start_time ?>" name="work_start_time" id="work_start_time">
+                                <span>-</span>
+                                <label for="work_end_time">To: </label>
+                                <input type="time" value="<?= $work_end_time ?>" name="work_end_time" id="work_end_time">
+                            </div>
                         </div>
 
                         <h2>Location/Landmark:</h2>

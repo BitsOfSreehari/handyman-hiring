@@ -26,7 +26,7 @@ CREATE TABLE handyman_profiles (
     other_job VARCHAR(255),
     work_start_time TIME NOT NULL,
     work_end_time TIME NOT NULL,
-    work_location VARCHAR(255),
+    work_location VARCHAR(75),
     profile_description VARCHAR(80),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
