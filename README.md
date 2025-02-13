@@ -22,10 +22,6 @@ Handyman Hiring Web App is a platform designed to connect users with skilled han
 
 ![Home Page](https://github.com/BitsOfSreehari/handyman-hiring/blob/main/screenshots/admin_manage-categories.png)
 
-- Edit Categories
-
-![Home Page](https://github.com/BitsOfSreehari/handyman-hiring/blob/main/screenshots/dashboard-professional-info.png)
-
 - View Profile
 
 ![Home Page](https://github.com/BitsOfSreehari/handyman-hiring/blob/main/screenshots/handyman_profile-view.png)
@@ -44,4 +40,4 @@ Handyman Hiring Web App is a platform designed to connect users with skilled han
 
 ## Database
 
-[Database](https://github.com/BitsOfSreehari/handyman-hiring/blob/main/MariaDB%20Local.session.sql)
+[SQL file](https://github.com/BitsOfSreehari/handyman-hiring/blob/main/MariaDB%20Local.session.sql)
