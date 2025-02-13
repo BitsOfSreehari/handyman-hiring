@@ -13,46 +13,24 @@ $user_id = (int) $_SESSION['user-id'];
 $profile_id = (int) $_SESSION['profile-id'];
 
 // get profile details excluding skills from db
-$profile_query = "
-    SELECT
-        p.profile_picture_url,
-        u.full_name,
-        p.work_location,
-        AVG(hr.rating) AS average_rating,
-        p.profile_description,
-        p.other_job,
-        p.work_start_time,
-        p.work_end_time,
-        GROUP_CONCAT(
-            DISTINCT CASE
-                WHEN hwd.day_of_week = 0 THEN 'Mon'
-                WHEN hwd.day_of_week = 1 THEN 'Tue'
-                WHEN hwd.day_of_week = 2 THEN 'Wed'
-                WHEN hwd.day_of_week = 3 THEN 'Thu'
-                WHEN hwd.day_of_week = 4 THEN 'Fri'
-                WHEN hwd.day_of_week = 5 THEN 'Sat'
-                WHEN hwd.day_of_week = 6 THEN 'Sun'
-            END
-            ORDER BY hwd.day_of_week ASC
-            SEPARATOR ' | '
-        ) AS work_days
-    FROM
-        handyman_profiles p
-    JOIN
-        users u ON p.user_id = u.user_id
-    JOIN
-        handyman_skills hs ON p.profile_id = hs.profile_id
-    JOIN
-        skills s ON hs.skill_id = s.skill_id
-    JOIN
-        handyman_work_days hwd ON p.profile_id = hwd.profile_id
-    LEFT JOIN
-        handyman_rating hr ON p.profile_id = hr.profile_id
-    WHERE
-        p.profile_id = $profile_id
-    GROUP BY
-        p.profile_id
-    ";
+$profile_query = "SELECT
+                    p.profile_picture_url,
+                    u.full_name,
+                    u.phone_number,
+                    p.work_location,
+                    AVG(hr.rating) AS average_rating,
+                    p.profile_description,
+                    p.other_job,
+                    p.work_start_time,
+                    p.work_end_time
+                  FROM
+                    handyman_profiles p
+                  JOIN
+                    users u ON p.user_id = u.user_id
+                  LEFT JOIN
+                    handyman_rating hr ON p.profile_id = hr.profile_id
+                  WHERE
+                    p.profile_id = $profile_id";
 $profile_result = mysqli_query($connection, $profile_query);
 
 // get rating from database if exists
@@ -120,20 +98,18 @@ if ($row = mysqli_fetch_assoc($result)) {
                     <div class="profile-right-item">
                         <ul class="profile-schedule">
                             <?php
-                            $fetch_days_query = "
-                                SELECT 
-                                    CASE 
-                                        WHEN day_of_week = 0 THEN 'Monday'
-                                        WHEN day_of_week = 1 THEN 'Tuesday'
-                                        WHEN day_of_week = 2 THEN 'Wednesday'
-                                        WHEN day_of_week = 3 THEN 'Thursday'
-                                        WHEN day_of_week = 4 THEN 'Friday'
-                                        WHEN day_of_week = 5 THEN 'Saturday'
-                                        WHEN day_of_week = 6 THEN 'Sunday'
-                                    END AS day
-                                FROM handyman_work_days
-                                WHERE profile_id = $profile_id;
-                                ";
+                            $fetch_days_query = "SELECT 
+                                                    CASE 
+                                                        WHEN day_of_week = 0 THEN 'Monday'
+                                                        WHEN day_of_week = 1 THEN 'Tuesday'
+                                                        WHEN day_of_week = 2 THEN 'Wednesday'
+                                                        WHEN day_of_week = 3 THEN 'Thursday'
+                                                        WHEN day_of_week = 4 THEN 'Friday'
+                                                        WHEN day_of_week = 5 THEN 'Saturday'
+                                                        WHEN day_of_week = 6 THEN 'Sunday'
+                                                    END AS day
+                                                 FROM handyman_work_days
+                                                 WHERE profile_id = $profile_id";
                             $fetch_days_result = mysqli_query($connection, $fetch_days_query);
                             if (mysqli_num_rows($fetch_days_result) > 0) {
                                 while ($day = mysqli_fetch_assoc($fetch_days_result)) {
@@ -149,7 +125,7 @@ if ($row = mysqli_fetch_assoc($result)) {
                         <p><?= date("g:i A", strtotime($row['work_start_time'])) ?> - <?= date("g:i A", strtotime($row['work_end_time'])) ?></p>
                     </div>
                     
-                    <a href="#" class="btn contact-btn">
+                    <a href="https://wa.me/<?= $row['phone_number'] ?>" class="btn contact-btn">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2386_3)">
                             <path d="M23.6785 18.3877C23.6161 18.3577 21.2833 17.209 20.8687 17.0598C20.6995 16.999 20.5182 16.9397 20.3253 16.9397C20.0103 16.9397 19.7457 17.0967 19.5396 17.405C19.3065 17.7514 18.6011 18.576 18.3831 18.8224C18.3546 18.8549 18.3158 18.8937 18.2925 18.8937C18.2716 18.8937 17.9106 18.7451 17.8013 18.6976C15.2987 17.6105 13.3992 14.9964 13.1387 14.5556C13.1015 14.4922 13.1 14.4634 13.0997 14.4634C13.1088 14.4299 13.193 14.3455 13.2364 14.302C13.3635 14.1762 13.5011 14.0105 13.6343 13.8502C13.6974 13.7743 13.7606 13.6982 13.8226 13.6265C14.0158 13.4017 14.1019 13.2271 14.2016 13.025L14.2539 12.9199C14.4974 12.4361 14.2894 12.0278 14.2222 11.8959C14.167 11.7856 13.182 9.40824 13.0772 9.15847C12.8254 8.55577 12.4926 8.27515 12.0302 8.27515C11.9873 8.27515 12.0302 8.27515 11.8502 8.28273C11.6311 8.29198 10.4379 8.44907 9.91027 8.78164C9.35079 9.13437 8.4043 10.2587 8.4043 12.2361C8.4043 14.0157 9.53365 15.696 10.0185 16.3351C10.0306 16.3512 10.0527 16.3839 10.0848 16.4309C11.9418 19.1428 14.2567 21.1526 16.6034 22.09C18.8626 22.9925 19.9324 23.0968 20.5406 23.0968H20.5407C20.7963 23.0968 21.0009 23.0767 21.1813 23.0589L21.2958 23.048C22.0763 22.9788 23.7914 22.0901 24.1815 21.006C24.4889 20.152 24.5699 19.219 24.3654 18.8804C24.2254 18.6502 23.984 18.5344 23.6785 18.3877Z" fill="#25D366"/>

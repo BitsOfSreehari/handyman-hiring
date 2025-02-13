@@ -15,3 +15,5 @@ $skills = array_column($skills, 0);
 $skills = implode(', ', $skills);
 var_dump($skills);
 ?>
+
+view user error after dlt

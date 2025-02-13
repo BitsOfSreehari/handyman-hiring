@@ -15,6 +15,11 @@
     margin: 0;
 }
 
+@font-face {
+    font-family: 'Patrick Hand SC';
+    src: url('../fonts/PatrickHandSC-Regular.ttf') format('truetype');
+}
+
 body {
     max-width: 1065px;
     margin-inline: auto;
@@ -136,16 +141,17 @@ footer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     row-gap: 30px;
+    column-gap: 20px;
     padding: 0 10px;
     justify-items: center;
     align-items: center;
-    list-style: none;
     text-align: center;
 }
 
 .category-container li {
     border: 2px solid transparent;
     padding: 0 5px;
+    width: fit-content;
 }
 
 .category-container li.selected {
@@ -254,8 +260,7 @@ footer {
 /* NAV SECTION */
 .bottom-section {
     margin-top: 100px;
-    border-top: 3px solid var(--color-pen);
-    border-bottom: 3px solid var(--color-pen);
+    border: 3px solid var(--color-pen);
     font-size: 1.25rem;
     padding: 16px 25px;
     display: flex;
@@ -296,7 +301,7 @@ footer {
 */
 
 .form-wrapper {
-    margin: 5rem 0;
+    margin-top: 50px;
 }
 
 .form-section {
@@ -312,7 +317,7 @@ footer {
     border: 3px solid var(--color-pen);
     padding: 0 85px;
     padding-top: 40px;
-    padding-bottom: 100px;
+    padding-bottom: 60px;
     height: 80vh;
     overflow-y: scroll;
 }
@@ -471,7 +476,8 @@ footer {
 }
 
 .dash_left {
-    border-right: 3px solid var(--color-pen);
+    border-right: 2px solid var(--color-pen);
+    margin: 30px 0;
 }
 
 .dash_left ul{
@@ -504,11 +510,10 @@ footer {
 
 /* PERSONAL INFO */
 .personal-info {
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin: 20px 0;
 }
 
 .personal-info .form-group {
@@ -695,7 +700,7 @@ footer {
     text-align: center;
     border-bottom: 1px solid var(--color-pen);
     padding: 20px 10px;
-    max-width: 500px;
+    max-width: 250px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -823,7 +828,7 @@ footer {
 
 .profile-maximize {
     border: 3px solid var(--color-pen);
-    height: fit-content;
+    /* height: fit-content; */
     padding: 20px 50px;
     margin: 4rem 0;
     display: grid;
@@ -891,6 +896,10 @@ footer {
 
 /* RATE PROFILE */
 .star-rate-container {
+    user-select: none; /* For most browsers */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer/Edge */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -925,6 +934,7 @@ footer {
 
 #star-text {
     visibility: hidden;
+    font-size: 1.3rem;
 }
 
 #star5:checked ~ #star-text::before {
@@ -953,16 +963,7 @@ footer {
 }
 
 .rating-btn {
-    border: 1px solid;
-    border-left: 2px solid;
-    border-bottom: 5px solid;
-    padding-inline: 3px;
-    font-size: 1.2rem;
-    visibility: hidden;
-}
-
-.star-rate input:checked ~ .rating-btn {
-    visibility: visible;
+    font-size: 1.3rem;
 }
 
 /*
@@ -1005,6 +1006,8 @@ footer {
 */
 
 .view-account {
+    height: fit-content;
+    max-height: 80vh;
     font-size: 1.7rem;
     padding: 20px 40px;
     display: flex;

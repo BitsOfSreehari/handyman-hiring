@@ -137,10 +137,10 @@ $profile_data = mysqli_fetch_assoc($result);
                         <input type="time" name="work_end_time" id="work_end_time" value="<?= $profile_data['work_end_time'] ?>">
                     </div>
 
-                    <h2>Location/Landmark:</h2>
+                    <h2>Locality/Landmark:</h2>
                     <div class="select-location">
                         <div class="form-group">
-                            <input type="text" name="work_location" id="work_location" placeholder="Preferred work location" value="<?= $profile_data['work_location'] ?>">
+                            <input type="text" name="work_location" id="work_location" placeholder="Preferred work locality" value="<?= $profile_data['work_location'] ?>">
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@ $profile_data = mysqli_fetch_assoc($result);
                     <div class="about-me">
                         <div class="form-group">
                             <textarea name="profile_description" id="profile_description" maxlength="80" placeholder="Describe your handyman skills or specialties.
-                            (max 80 characters)"><?= $profile_data['profile_description'] ?></textarea>
+                            (Under 80 characters)"><?= $profile_data['profile_description'] ?></textarea>
                         </div>
                     </div>
 

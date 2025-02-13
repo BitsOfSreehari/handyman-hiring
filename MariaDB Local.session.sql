@@ -26,8 +26,8 @@ CREATE TABLE handyman_profiles (
     other_job VARCHAR(255),
     work_start_time TIME NOT NULL,
     work_end_time TIME NOT NULL,
-    work_location VARCHAR(75),
-    profile_description VARCHAR(80),
+    work_location VARCHAR(75) NOT NULL,
+    profile_description VARCHAR(80) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
@@ -57,9 +57,9 @@ CREATE TABLE handyman_rating (
     CONSTRAINT unique_user_profile_rating UNIQUE (user_id, profile_id)
 );
 
-CREATE TABLE admins (
-    admin_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT UNIQUE NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
+-- CREATE TABLE admins (
+--     admin_id INT PRIMARY KEY AUTO_INCREMENT,
+--     user_id INT UNIQUE NOT NULL,
+--     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+-- );
 

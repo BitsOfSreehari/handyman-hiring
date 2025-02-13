@@ -63,12 +63,15 @@ unset($_SESSION['join-data']);
 
     <!-- CUSTOM STYLE SHEET -->
     <link rel="stylesheet" href="<?= ROOT_URL ?>css/style.css">
-    <!-- FONTAWESOME CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- GOOGLE FONT(Patrick Hand SC) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="partials/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="partials/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="partials/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 
 <body>
@@ -147,17 +150,17 @@ unset($_SESSION['join-data']);
                             <input type="time" value="<?= $work_end_time ?>" name="work_end_time" id="work_end_time">
                         </div>
 
-                        <h2>Location/Landmark:</h2>
+                        <h2>Locality/Landmark:</h2>
                         <div class="select-location">
                             <div class="form-group">
-                                <input type="text" value="<?= $work_location ?>" name="work_location" id="work-location" placeholder="Preferred work location">
+                                <input type="text" value="<?= $work_location ?>" name="work_location" id="work-location" placeholder="Preferred work locality">
                             </div>
                         </div>
 
                         <h2>About you:</h2>
                         <div class="about-me">
                             <div class="form-group">
-                                <textarea name="profile_description" id="profile-description" maxlength="80" placeholder="Describe your handyman skills or specialties. (max 80 characters)"><?= $profile_description ? $profile_description : ''?></textarea>
+                                <textarea name="profile_description" id="profile-description" maxlength="80" placeholder="Describe your handyman skills or specialties. (Under 80 characters)"><?= $profile_description ? $profile_description : ''?></textarea>
                             </div>
                         </div>
                         

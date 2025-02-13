@@ -7,7 +7,11 @@ if (isset($_GET['skill_id'])) {
 }
 
 // get categories (skills) from db
-$fetch_skills_query = "SELECT skill_id, skill_name FROM skills";
+$fetch_skills_query = "SELECT s.skill_id, s.skill_name, COUNT(hs.profile_id) AS profile_count
+                       FROM skills s
+                       LEFT JOIN handyman_skills hs ON s.skill_id = hs.skill_id
+                       GROUP BY s.skill_id, s.skill_name
+                       ORDER BY profile_count DESC";
 $fetch_skills_result = mysqli_query($connection, $fetch_skills_query);
 
 // set selected skill id to skill id from session if it exists
@@ -28,47 +32,45 @@ if (isset($selected_skill_id)) {
     } else {
         $condition = "s.skill_id = $selected_skill_id";
     }
-    $fetch_profiles_query = "
-        SELECT
-            p.profile_id,
-            p.profile_picture_url,
-            u.full_name,
-            p.work_location,
-            p.other_job,
-            p.work_start_time,
-            p.work_end_time,
-            GROUP_CONCAT(
-                DISTINCT CASE
-                    WHEN hwd.day_of_week = 0 THEN 'Mon'
-                    WHEN hwd.day_of_week = 1 THEN 'Tue'
-                    WHEN hwd.day_of_week = 2 THEN 'Wed'
-                    WHEN hwd.day_of_week = 3 THEN 'Thu'
-                    WHEN hwd.day_of_week = 4 THEN 'Fri'
-                    WHEN hwd.day_of_week = 5 THEN 'Sat'
-                    WHEN hwd.day_of_week = 6 THEN 'Sun'
-                END
-                ORDER BY hwd.day_of_week ASC
-                SEPARATOR ' | '
-            ) AS work_days,
-            AVG(hr.rating) AS average_rating
-        FROM
-            handyman_profiles p
-        JOIN
-            users u ON p.user_id = u.user_id
-        JOIN
-            handyman_skills hs ON p.profile_id = hs.profile_id
-        JOIN
-            skills s ON hs.skill_id = s.skill_id
-        JOIN
-            handyman_work_days hwd ON p.profile_id = hwd.profile_id
-        LEFT JOIN
-            handyman_rating hr ON p.profile_id = hr.profile_id
-        WHERE
-            $condition
-        GROUP BY
-            p.profile_id
-            ORDER BY u.full_name ASC
-        ";
+    $fetch_profiles_query = "SELECT
+                                p.profile_id,
+                                p.profile_picture_url,
+                                u.full_name,
+                                p.work_location,
+                                p.other_job,
+                                p.work_start_time,
+                                p.work_end_time,
+                                GROUP_CONCAT(
+                                    DISTINCT CASE
+                                        WHEN hwd.day_of_week = 0 THEN 'Mon'
+                                        WHEN hwd.day_of_week = 1 THEN 'Tue'
+                                        WHEN hwd.day_of_week = 2 THEN 'Wed'
+                                        WHEN hwd.day_of_week = 3 THEN 'Thu'
+                                        WHEN hwd.day_of_week = 4 THEN 'Fri'
+                                        WHEN hwd.day_of_week = 5 THEN 'Sat'
+                                        WHEN hwd.day_of_week = 6 THEN 'Sun'
+                                    END
+                                    ORDER BY hwd.day_of_week ASC
+                                    SEPARATOR ', '
+                                ) AS work_days,
+                                AVG(hr.rating) AS average_rating
+                             FROM
+                                handyman_profiles p
+                             JOIN
+                                users u ON p.user_id = u.user_id
+                             JOIN
+                                handyman_skills hs ON p.profile_id = hs.profile_id
+                             JOIN
+                                skills s ON hs.skill_id = s.skill_id
+                             JOIN
+                                handyman_work_days hwd ON p.profile_id = hwd.profile_id
+                             LEFT JOIN
+                                handyman_rating hr ON p.profile_id = hr.profile_id
+                             WHERE
+                                $condition
+                             GROUP BY
+                                p.profile_id
+                                ORDER BY u.full_name ASC";
     $fetch_profiles_result = mysqli_query($connection, $fetch_profiles_query);
 }
 ?>
